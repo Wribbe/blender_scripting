@@ -2,6 +2,8 @@ import bpy
 import sys
 import os
 
+#import pudb; pudb.set_trace()
+
 from bpy import context
 from math import sin, cos, radians
 
@@ -12,7 +14,7 @@ layers[0] = True
 cursor = context.scene.cursor_location
 
 radius = 5
-anglesInRadians = [radians(degree) for degree in range(0, 360, 36)]
+anglesInRadians = [radians(degree) for degree in range(0, 360, 65)]
 
 DIR_IMG=""
 OUTPUT_NAME=""
@@ -30,10 +32,14 @@ for theta in anglesInRadians:
     z = cursor.z
     add_cube(location=(x, y, z), layers=layers)
 
+
 bpy.context.scene.render.filepath = os.path.join(
     DIR_IMG,
     "{}.png".format(OUTPUT_NAME)
 )
+
+# Modify one cube.
+bpy.data.objects['Cube'].scale = (3, 2, 1)
 
 bpy.ops.render.render(write_still = True)
 print(sys.argv)
