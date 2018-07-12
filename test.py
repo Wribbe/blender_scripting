@@ -43,8 +43,8 @@ for arg in sys.argv:
 #    z = cursor.z
 #    add_cube(location=(x, y, z), layers=layers)
 
-intersecting_cube = add_cube()
-intersecting_cube.scale = (2,2,2)
+#intersecting_cube = add_cube()
+#intersecting_cube.scale = (2,2,2)
 
 
 bpy.context.scene.render.filepath = os.path.join(
@@ -52,9 +52,14 @@ bpy.context.scene.render.filepath = os.path.join(
     "{}.png".format(OUTPUT_NAME)
 )
 
+def get_scale(key):
+    return list(dims[key].values())
+
 # Modify one cube.
-bpy.data.objects['Cube'].scale = (3, 2, 1)
+key_table = list(dims.keys())[0]
+bpy.data.objects['Cube'].scale = get_scale(key_table)
+
 
 bpy.ops.render.render(write_still = True)
 print(sys.argv)
-print(dims)
+print(dims[key_table].values())
