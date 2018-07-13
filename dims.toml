@@ -1,6 +1,7 @@
 # Units are in meters.
 
-[table]
+[table-top]
 width = 2
 length = 2
 height = 0.02
+border = 0.30

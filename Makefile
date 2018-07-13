@@ -8,5 +8,5 @@ all: dirs $(images)
 dirs:
 	@[ -d "$(DIR_IMG)" ] || mkdir "$(DIR_IMG)"
 
-$(DIR_IMG)/%.png: %.py
-	blender --background --python $^ -- img_dir=$(DIR_IMG)
+$(DIR_IMG)/%.png: %.py dims.toml
+	blender --background --python $< -- img_dir=$(DIR_IMG)
